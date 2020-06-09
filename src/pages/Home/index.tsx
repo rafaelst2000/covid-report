@@ -9,41 +9,33 @@ const Home = () => {
    <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding': undefined}>
     <View style={styles.container}>
       <View style={styles.main}> 
-
-      <View style={styles.image}>
-        <Image source={require('../../assets/bg.png')}
-             style={{width: 150, height: 150}}/>
-      </View>
-      
        
        <View>
-           <Text style={styles.title}>Covid Report</Text>
+           <Text style={styles.title}>
+            <Image source={require('../../assets/bg.png')}
+              style={{width: 40, height: 40}}/>
+            &nbsp;
+            Covid Report</Text>
 
            <Text style={styles.description}>Monitorando a Covid-19 de forma rápida e prática :)</Text>
          </View>
       </View>
+
+      
       
       <View style={styles.footer}>
-
-     
+          <View style={styles.image}>
+              <Image source={require('../../assets/cut.png')}
+                  style={{width: 250, height: 250}}/>
+          </View>
+      
        <RectButton style={styles.button} onPress={() => {}}>
-           <View style={styles.buttonIcon}>
-             <Text>
-               <Feather name="globe" color="#fff" size={24}/>
-               
-             </Text>
-           </View>
            <Text style={styles.buttonText}>Status Mundial</Text>
          </RectButton>
 
-         <RectButton style={styles.button} onPress={() => {}}>
-           <View style={styles.buttonIcon}>
-             <Text>
-                <Feather name="corner-down-right" color="#fff" size={24}/>
-              </Text>
-            </View>
+          <RectButton style={styles.button} onPress={() => {}}>
            <Text style={styles.buttonText}>Status por País</Text>
-       </RectButton>
+          </RectButton>
    
 
 
@@ -68,7 +60,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    alignItems: 'center',
+    marginBottom: 72,
+    alignItems: 'flex-end',
   },
 
   title: {
@@ -82,9 +75,9 @@ const styles = StyleSheet.create({
 
   description: {
     color: 'lightgrey',
-    fontSize: 22,
+    fontSize: 24,
     marginLeft: 16,
-    marginTop: 32,
+    marginTop: 48,
     fontFamily: 'Roboto_400Regular',
     maxWidth: 300,
     lineHeight: 32,
@@ -121,16 +114,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     marginTop: 8,
-  },
-
-  buttonIcon: {
-    height: 60,
-    width: 60,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10
   },
 
   buttonText: {
