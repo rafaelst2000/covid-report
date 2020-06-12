@@ -3,8 +3,16 @@ import { View,Text, ImageBackground ,StyleSheet,
 Image, TextInput, Picker, KeyboardAvoidingView, Platform, Group  } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import { Feather } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
+  const navigation = useNavigation()
+
+  function handleNavigateToGlobal(){
+    navigation.navigate('GlobalStatus')
+  }
+
+
   return(
    <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding': undefined}>
     <View style={styles.container}>
@@ -29,7 +37,7 @@ const Home = () => {
                   style={{width: 250, height: 250}}/>
           </View>
       
-       <RectButton style={styles.button} onPress={() => {}}>
+       <RectButton style={styles.button} onPress={handleNavigateToGlobal}>
            <Text style={styles.buttonText}>Status Mundial</Text>
          </RectButton>
 
