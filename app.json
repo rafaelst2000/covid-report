@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "covid-app",
+    "name": "Covid Report",
     "slug": "covid-app",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,7 +12,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#140d21"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,6 +22,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.covidreport.covidreport"
     }
   }
 }

@@ -1,32 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { View,Text,StyleSheet, 
-Image, Picker, KeyboardAvoidingView, Platform } from 'react-native'
+Image, KeyboardAvoidingView, Platform } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
-import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
 
+import COVIDGlobal from '../../model/CovidGlobal'
+import COVIDCountry from '../../model/CovidCountry'
 
-interface COVIDGlobal{
-  NewConfirmed: number,
-  TotalConfirmed: number,
-  NewDeaths: number,
-  TotalDeaths: number,
-  NewRecovered: number,
-  TotalRecovered: number
-}
-
-interface COVIDCountry{
-  Country: string,
-  CountryCode: string,
-  Slug: string,
-  NewConfirmed: number,
-  TotalConfirmed: number,
-  NewDeaths: number,
-  TotalDeaths: number,
-  NewRecovered: number,
-  TotalRecovered: number,
-}
 
 const Home = () => {
   const navigation = useNavigation()
@@ -54,43 +35,38 @@ const Home = () => {
   }
 
   return(
-   <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding': undefined}>
+  <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding': undefined}>
     <View style={styles.container}>
       <View style={styles.main}> 
        
-       <View>
-           <Text style={styles.title}>
-            <Image source={require('../../assets/bg.png')}
-              style={{width: 40, height: 40}}/>
+        <Text style={styles.title}>
+          <Image source={require('../../assets/bg.png')}
+            style={{width: 40, height: 40}}/>
             &nbsp;
-            Covid Report</Text>
+            Covid Report
+        </Text>
+        <Text style={styles.description}>Monitorando a Covid-19 de forma rápida e prática :)</Text>
 
-           <Text style={styles.description}>Monitorando a Covid-19 de forma rápida e prática :)</Text>
-         </View>
       </View>
 
-      
-      
       <View style={styles.footer}>
           <View style={styles.image}>
               <Image source={require('../../assets/cut.png')}
-                  style={{width: 250, height: 250}}/>
+                style={{width: 250, height: 250}}/>
           </View>
       
        <RectButton style={styles.button} onPress={handleNavigateToGlobal}>
            <Text style={styles.buttonText}>Status Mundial</Text>
-         </RectButton>
+        </RectButton>
 
-          <RectButton style={styles.button} onPress={handleNavigateToAllCountries}>
+        <RectButton style={styles.button} onPress={handleNavigateToAllCountries}>
            <Text style={styles.buttonText}>Status por País</Text>
-          </RectButton>
-   
-
-
-     </View>
+        </RectButton>
 
       </View>
-    </KeyboardAvoidingView>
+
+    </View>
+  </KeyboardAvoidingView>
   )
 }
 
@@ -135,24 +111,6 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
 
-  select: {
-    height: 60,
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    marginBottom: 8,
-    paddingHorizontal: 24,
-    paddingVertical: 5
-    },
-
-  input: {
-    height: 60,
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    marginBottom: 8,
-    paddingHorizontal: 24,
-    fontSize: 16,
-  },
-
   button: {
     backgroundColor: '#71bf44',
     height: 60,
@@ -173,4 +131,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
   }
 });
+
 export default Home

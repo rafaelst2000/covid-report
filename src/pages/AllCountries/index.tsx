@@ -1,27 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Constants from 'expo-constants'
 import { View,Text,StyleSheet,TouchableOpacity, ScrollView} from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { Feather as Icon } from '@expo/vector-icons'
-
-interface COVIDCountry{
-    Country: string,
-    CountryCode: string,
-    Slug: string,
-    NewConfirmed: number,
-    TotalConfirmed: number,
-    NewDeaths: number,
-    TotalDeaths: number,
-    NewRecovered: number,
-    TotalRecovered: number,
-}
 
 const AllCountries = ({ route }) => {
   const navigation = useNavigation()
   const {data} = route.params
-
-  const [countries, setCountries] = useState<COVIDCountry[]>(data)
 
   function handleNavigateBack(){
     navigation.goBack()
@@ -73,14 +58,6 @@ const styles = StyleSheet.create({
     paddingTop: 20 + Constants.statusBarHeight,
   },
 
-  main: {
-    flex: 1,
-    marginTop: 24,
-    justifyContent: 'center',
-    textAlign: 'left'
-
-  },
-
   title: {
     color: '#fff',
     padding: 24,
@@ -89,9 +66,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     textAlign: "center",
   },
-  table: {
-    padding: 32
-  },
+  
   out: {
     flexDirection: 'row',
   },

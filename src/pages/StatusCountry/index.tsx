@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Constants from 'expo-constants'
 import { View,Text,StyleSheet,TouchableOpacity, Image} from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { Feather as Icon } from '@expo/vector-icons'
 
 import ListRow from '../../components/ListRow'
 
-interface COVIDCountry{
-  Country: string,
-  CountryCode: string,
-  Slug: string,
-  NewConfirmed: number,
-  TotalConfirmed: number,
-  NewDeaths: number,
-  TotalDeaths: number,
-  NewRecovered: number,
-  TotalRecovered: number,
-}
+import COVIDCountry from '../../model/CovidCountry'
+
 
 
 const StatusCountry = ({ route }) => {
@@ -54,13 +44,6 @@ const StatusCountry = ({ route }) => {
         </View>
 
       </View>
-
-      <View style={styles.footer}>
-          <View style={styles.image}>
-            <Image source={require('../../assets/cut.png')}
-              style={{width: 250, height: 250}}/>
-          </View>
-      </View> 
       
     </View>
         
@@ -88,40 +71,10 @@ const styles = StyleSheet.create({
     marginTop: 32,
     textAlign: "center",
   },
+
   table: {
     padding: 32
   },
-  out: {
-    flexDirection: 'row',
-    maxWidth: 440,
-    
-  },
 
-  line: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-    padding: 10,
-    borderBottomColor: "#71bf44",
-    borderBottomWidth: 2
-  },
-
-  text: {
-    color: 'white',
-    fontSize: 28,
-    fontFamily: 'Roboto_400Regular',
-    maxWidth: 300,
-    lineHeight: 32,
-  },
-
-  image: {
-    marginBottom: 72,
-    alignItems: 'flex-end',
-  },
-
-  footer: {
-    marginBottom: 16
-  },
 })
 export default StatusCountry
