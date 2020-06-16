@@ -4,41 +4,34 @@ import { View,Text,StyleSheet,TouchableOpacity, ScrollView} from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { Feather as Icon } from '@expo/vector-icons'
-import axios from 'axios'
-
-import ListRow from '../../components/ListRow'
 
 interface COVIDCountry{
-  Country: string,
-  CountryCode: string,
-  Slug: string,
-  NewConfirmed: number,
-  TotalConfirmed: number,
-  NewDeaths: number,
-  TotalDeaths: number,
-  NewRecovered: number,
-  TotalRecovered: number,
+    Country: string,
+    CountryCode: string,
+    Slug: string,
+    NewConfirmed: number,
+    TotalConfirmed: number,
+    NewDeaths: number,
+    TotalDeaths: number,
+    NewRecovered: number,
+    TotalRecovered: number,
 }
 
 const AllCountries = ({ route }) => {
   const navigation = useNavigation()
   const {data} = route.params
 
-  const [country, setCountry] = useState<COVIDCountry>({})
+  const [countries, setCountries] = useState<COVIDCountry[]>(data)
 
   function handleNavigateBack(){
     navigation.goBack()
   }
 
   function handleSelectedCountry(event: string){
-
-    const selected = data.filter(country =>
-        country.Country.toLowerCase().includes(event.toLowerCase()),
+    const selected = data.filter(c =>
+        c.Country.toLowerCase().includes(event.toLowerCase()),
     );
-
-    setCountry(selected[0])
-    console.log(country) //error here
-    navigation.navigate('StatusCountry', {data: country})
+    navigation.navigate('StatusCountry', {data: selected[0]})
   }
 
   return(
@@ -66,10 +59,8 @@ const AllCountries = ({ route }) => {
            </TouchableOpacity>  
           ))}
         
-      </ScrollView>
+        </ScrollView>
        </View>
-       
-
     </View>
         
   </>  
@@ -119,6 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 16,
     marginBottom: 32,
+    paddingBottom: 16,
   },
 
   text: {

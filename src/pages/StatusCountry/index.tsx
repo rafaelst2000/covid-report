@@ -4,15 +4,28 @@ import { View,Text,StyleSheet,TouchableOpacity, Image} from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { Feather as Icon } from '@expo/vector-icons'
-import axios from 'axios'
 
 import ListRow from '../../components/ListRow'
+
+interface COVIDCountry{
+  Country: string,
+  CountryCode: string,
+  Slug: string,
+  NewConfirmed: number,
+  TotalConfirmed: number,
+  NewDeaths: number,
+  TotalDeaths: number,
+  NewRecovered: number,
+  TotalRecovered: number,
+}
 
 
 const StatusCountry = ({ route }) => {
   const navigation = useNavigation()
 
   const {data} = route.params
+
+  const [country, setCountry] = useState<COVIDCountry>(data)
 
 
   function handleNavigateBack(){
@@ -28,16 +41,16 @@ const StatusCountry = ({ route }) => {
 
       <View style={styles.main}> 
         <Text style={styles.title}>
-          {data.Country}
+          {country.Country}
         </Text>
 
         <View style={styles.table}>
-          <ListRow title="Novos Casos" desc={data.NewConfirmed} />
-          <ListRow title="Total de Confirmados" desc={data.TotalConfirmed} />
-          <ListRow title="Novas Mortes" desc={data.NewDeaths} />
-          <ListRow title="Total de Mortes" desc={data.TotalDeaths} />
-          <ListRow title="Novos Recuperados" desc={data.NewRecovered} />
-          <ListRow title="Total de Recuperados" desc={data.TotalRecovered} />
+          <ListRow title="Novos Casos" desc={country.NewConfirmed} />
+          <ListRow title="Total de Confirmados" desc={country.TotalConfirmed} />
+          <ListRow title="Novas Mortes" desc={country.NewDeaths} />
+          <ListRow title="Total de Mortes" desc={country.TotalDeaths} />
+          <ListRow title="Novos Recuperados" desc={country.NewRecovered} />
+          <ListRow title="Total de Recuperados" desc={country.TotalRecovered} />
         </View>
 
       </View>
