@@ -21,7 +21,7 @@ O projeto tem como finalidade **mostrar dados** da Covid-19 de forma rápida e p
 
 ## **:computer: Tecnologias**
 
-#### **Applicativo** [React-Native][react_native] + [TypeScript][typescript]
+#### **Aplicativo** [React-Native][react_native] + [TypeScript][typescript]
 
   - **[Axios][axios]**
   - **[Api-Covid][api-covid]**
