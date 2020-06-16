@@ -1,17 +1,47 @@
-import React from 'react'
-import { View,Text, ImageBackground ,StyleSheet, 
-Image, TextInput, Picker, KeyboardAvoidingView, Platform, Group  } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View,Text,StyleSheet, 
+Image, Picker, KeyboardAvoidingView, Platform } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
+
+
+interface COVIDGlobal{
+  NewConfirmed: number,
+  TotalConfirmed: number,
+  NewDeaths: number,
+  TotalDeaths: number,
+  NewRecovered: number,
+  TotalRecovered: number
+}
 
 const Home = () => {
   const navigation = useNavigation()
 
+  const [global, setGlobal] = useState<COVIDGlobal>({})
+  const [countries, setCountries] = useState<string[]>([])
+
+
+  useEffect(() => {
+    axios.get('https://api.covid19api.com/summary').then(res => {
+      const data = res.data
+
+     // const allCountries = data.Countries.map(country => country.Country)
+ 
+      setCountries(data.Countries)
+      setGlobal(data.Global)
+    })   
+  }, []);
+
+
   function handleNavigateToGlobal(){
-    navigation.navigate('GlobalStatus')
+    navigation.navigate('GlobalStatus', {data: global})
   }
 
+  function handleNavigateToAllCountries(){
+    navigation.navigate('AllCountries', {data: countries})
+  }
 
   return(
    <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding': undefined}>
@@ -41,7 +71,7 @@ const Home = () => {
            <Text style={styles.buttonText}>Status Mundial</Text>
          </RectButton>
 
-          <RectButton style={styles.button} onPress={() => {}}>
+          <RectButton style={styles.button} onPress={handleNavigateToAllCountries}>
            <Text style={styles.buttonText}>Status por País</Text>
           </RectButton>
    

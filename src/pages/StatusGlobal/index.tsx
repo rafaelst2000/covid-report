@@ -8,25 +8,10 @@ import axios from 'axios'
 
 import ListRow from '../../components/ListRow'
 
-interface COVIDGlobal{
-    NewConfirmed: number,
-    TotalConfirmed: number,
-    NewDeaths: number,
-    TotalDeaths: number,
-    NewRecovered: number,
-    TotalRecovered: number
-}
 
-const GlobalStatus = () => {
+const StatusGlobal = ({ route }) => {
   const navigation = useNavigation()
-  const [global, setGlobal] = useState<COVIDGlobal>({})
-
-  useEffect(() => {
-    axios.get('https://api.covid19api.com/summary').then(res => {
-      const data = res.data
-      setGlobal(data.Global)
-    })   
-  }, []);
+  const {data} = route.params
 
   function handleNavigateBack(){
     navigation.goBack()
@@ -45,12 +30,12 @@ const GlobalStatus = () => {
         </Text>
 
         <View style={styles.table}>
-          <ListRow title="Novos Casos" desc={global.NewConfirmed} />
-          <ListRow title="Total de Confirmados" desc={global.TotalConfirmed} />
-          <ListRow title="Novas Mortes" desc={global.NewDeaths} />
-          <ListRow title="Total de Mortes" desc={global.TotalDeaths} />
-          <ListRow title="Novos Recuperados" desc={global.NewRecovered} />
-          <ListRow title="Total de Recuperados" desc={global.TotalRecovered} />
+          <ListRow title="Novos Casos" desc={data.NewConfirmed} />
+          <ListRow title="Total de Confirmados" desc={data.TotalConfirmed} />
+          <ListRow title="Novas Mortes" desc={data.NewDeaths} />
+          <ListRow title="Total de Mortes" desc={data.TotalDeaths} />
+          <ListRow title="Novos Recuperados" desc={data.NewRecovered} />
+          <ListRow title="Total de Recuperados" desc={data.TotalRecovered} />
         </View>
 
       </View>
@@ -124,4 +109,4 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
 })
-export default GlobalStatus
+export default StatusGlobal
